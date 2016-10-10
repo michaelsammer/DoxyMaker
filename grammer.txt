@@ -1,0 +1,38 @@
+header-file = DefMacroStart Includes Content DefMacroEnd
+
+DefMacroStart = '#ifndef ' Hname '#define' Hname
+Hname = UppderChars
+
+DefMacroEnd = '#endif'
+
+Includes = {Include}
+Include = '#include' '<'|'"' Header-file-name '>'|'"'
+Header-file-name = Chars ['.h']
+
+Content = {Statement}
+Statement = [Using] | [Namespace] | [Enum] | [Struct] | Class
+
+Using = 'using' NSname {'::' NSname} ';'
+
+Namespace = 'namespace' NSname '{' statement '};'
+NSname = Chars
+
+Enum = 'enum' Name '{' EnumVal {, EnumVal} '};'
+EnumVal = Name [ = InitVal]
+
+Struct = 'struct' Name '{' VarDecl {VarDecl} '};'
+
+Class = 'class' Name [':' Classifier ClassName 
+		{',' Classifier ClassName}] '{' ClassDefinition '};'
+		
+Classifier = 'public' | 'protected' | 'private'
+ClassName = Chars
+
+ClassDefinition = {ClassSegment}
+ClassSegment = Classifier|QTClassifier ':' {VarDecl|MethodDecl}
+
+QTClassifier = 'signals' | Classifier 'slots'
+
+VarDecl = ValType ['*'] Name ';'
+
+MethodDecl = ValType ['*'] Name '(' [VarDecl {',' VarDecl}] ');'

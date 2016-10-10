@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    mdi/mditextchild.cpp
+    mdi/mditextchild.cpp \
+    tools/analyser.cpp
 
 HEADERS  += mainwindow.h \
-    mdi/mditextchild.h
+    mdi/mditextchild.h \
+    tools/analyser.h
 
 FORMS    += mainwindow.ui
 
