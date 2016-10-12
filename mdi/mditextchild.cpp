@@ -12,32 +12,44 @@
 
 MdiTextChild::MdiTextChild() {
     setAttribute(Qt::WA_DeleteOnClose);
-
     setOverwriteMode(true);
 
 }
 
 bool MdiTextChild::loadFile(const QString &fileName) {
     QFile file(fileName);
-        if (!file.open(QFile::ReadOnly | QFile::Text)) {
-            QMessageBox::warning(this, tr("MDI"),
-                                 tr("Cannot read file %1:\n%2.")
-                                 .arg(fileName)
-                                 .arg(file.errorString()));
-            return false;
-        }
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+        QMessageBox::warning(this, tr("MDI"),
+                             tr("Cannot read file %1:\n%2.")
+                             .arg(fileName)
+                             .arg(file.errorString()));
+        return false;
+    }
 
-        QTextStream in(&file);
-        QApplication::setOverrideCursor(Qt::WaitCursor);
-        setPlainText(in.readAll());
-        QApplication::restoreOverrideCursor();
+    QTextStream in(&file);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    QString text = in.readAll();
+    setPlainText(text);
+    QApplication::restoreOverrideCursor();
 
-        setCurrentFile(fileName);
+    setCurrentFile(fileName);
 
-        connect(document(), SIGNAL(contentsChanged()),
-                this, SLOT(documentWasModified()));
+    connect(document(), SIGNAL(contentsChanged()),
+            this, SLOT(documentWasModified()));
 
-        return true;
+    Analyser ana(text);
+    statements = ana.getDocElements();
+
+    qDebug() << QString("%1 statements found").arg(statements.size());
+    foreach(Statement *s, statements) {
+        QString type;
+        if (s->getType() == ENUM) type = "enum";
+        if (s->getType() == STRUCT) type = "struct";
+        if (s->getType() == CLASS) type = "class";
+        qDebug() << QString("%1 %2 (%3) in row %4").arg(type).arg(s->getName()).arg(s->getLevel()).arg(s->getRow());
+    }
+
+    return true;
 }
 
 bool MdiTextChild::save() {

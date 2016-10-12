@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QString>
 #include <QTextEdit>
+#include <QList>
+
+#include "tools/analyser.h"
 
 class MdiTextChild : public QTextEdit {
     Q_OBJECT
@@ -27,9 +30,12 @@ private slots:
     void documentWasModified();
 
 private:
+    Analyser *analyser;
+
     bool maybeSave();
     void setCurrentFile(const QString &fileName);
     QString strippedName(const QString &fullFileName);
+    QList<Statement *> statements;
 
     QString curFile;
     bool isUntitled;

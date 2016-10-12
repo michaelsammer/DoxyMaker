@@ -15,13 +15,18 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     mdi/mditextchild.cpp \
-    tools/analyser.cpp
+    tools/analyser.cpp \
+    data/statement.cpp \
+    dlgtemplates.cpp
 
 HEADERS  += mainwindow.h \
     mdi/mditextchild.h \
-    tools/analyser.h
+    tools/analyser.h \
+    data/statement.h \
+    dlgtemplates.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    dlgtemplates.ui
 
 RESOURCES += \
     res.qrc

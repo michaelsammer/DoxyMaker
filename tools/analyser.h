@@ -3,15 +3,30 @@
 
 #include <QString>
 #include <QStringList>
+#include <QList>
 
-class Analyser
-{
+#include "data/statement.h"
+
+enum Classifier {
+    PUBLIC,
+    PROTECTED,
+    PRIVATE
+};
+
+class Analyser {
+
 public:
-    Analyser();
+    Analyser(QString &content);
+
+    QList<Statement *> getDocElements() const;
 
 private:
+    QList<Statement *> docElements;
 
+    void runAnalyse(QString content);
     QStringList getRows(QString input);
+    QList<Statement *> getStatements(QString row, int rowCnt, int &level);
+    bool isStatementValid(QString name);
 };
 
 #endif // ANALYSER_H
