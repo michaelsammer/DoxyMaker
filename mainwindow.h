@@ -7,14 +7,15 @@
 #include <QStringList>
 #include <QFileInfo>
 #include <QFileDialog>
+
 #include "mdi/mditextchild.h"
+#include "dlgtemplates.h"
 
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
@@ -25,11 +26,13 @@ public slots:
     void open();
     void save();
     void comment();
+    void settings();
 
     MdiTextChild *createMdiChild();
 
 private:
     Ui::MainWindow *ui;
+    DlgTemplates *dlgTemplates;
 
     MdiTextChild *activeMdiChild();
     QMdiSubWindow *findMdiChild(const QString &fileName);

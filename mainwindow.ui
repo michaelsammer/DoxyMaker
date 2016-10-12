@@ -79,6 +79,7 @@
    </attribute>
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
+   <addaction name="actionSettings"/>
   </widget>
   <widget class="QDockWidget" name="dkwTools">
    <property name="windowTitle">
@@ -264,7 +265,7 @@
      <normaloff>:/icons/open.png</normaloff>:/icons/open.png</iconset>
    </property>
    <property name="text">
-    <string>open</string>
+    <string>Open</string>
    </property>
    <property name="toolTip">
     <string>Open</string>
@@ -280,6 +281,15 @@
    </property>
    <property name="toolTip">
     <string>Save</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/settings.png</normaloff>:/icons/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Settings</string>
    </property>
   </action>
  </widget>
@@ -336,10 +346,27 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionSettings</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>settings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>471</x>
+     <y>305</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>open()</slot>
   <slot>save()</slot>
   <slot>comment()</slot>
+  <slot>settings()</slot>
  </slots>
 </ui>

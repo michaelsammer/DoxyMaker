@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent), ui(new Ui::MainWindow) {
+    QMainWindow(parent), ui(new Ui::MainWindow), dlgTemplates(Q_NULLPTR) {
     ui->setupUi(this);
 }
 
@@ -46,6 +46,13 @@ void MainWindow::save() {
 
 void MainWindow::comment() {
     activeMdiChild()->writeHeader("This is a test for a commecnt.\nNow a line break should be done.");
+}
+
+void MainWindow::settings() {
+    if (dlgTemplates == Q_NULLPTR)
+        dlgTemplates = new DlgTemplates(this);
+
+    dlgTemplates->show();
 }
 
 MdiTextChild *MainWindow::createMdiChild() {
