@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,16 +17,29 @@ SOURCES += main.cpp\
     mdi/mditextchild.cpp \
     tools/analyser.cpp \
     data/statement.cpp \
-    dlgtemplates.cpp
+    dlgtemplates.cpp \
+    data/db.cpp \
+    data/templatedao.cpp \
+    data/templatedto.cpp \
+    data/templatecontentdto.cpp \
+    dlgtemplate.cpp \
+    tools/templatemngr.cpp
 
 HEADERS  += mainwindow.h \
     mdi/mditextchild.h \
     tools/analyser.h \
     data/statement.h \
-    dlgtemplates.h
+    dlgtemplates.h \
+    data/db.h \
+    data/templatedao.h \
+    data/templatedto.h \
+    data/templatecontentdto.h \
+    dlgtemplate.h \
+    tools/templatemngr.h
 
 FORMS    += mainwindow.ui \
-    dlgtemplates.ui
+    dlgtemplates.ui \
+    dlgtemplate.ui
 
 RESOURCES += \
     res.qrc

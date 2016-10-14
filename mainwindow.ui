@@ -193,16 +193,16 @@
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_6">
+         <widget class="QCheckBox" name="checkBox_5">
           <property name="text">
-           <string>commecnt values</string>
+           <string>comment methods</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_5">
+         <widget class="QCheckBox" name="checkBox_6">
           <property name="text">
-           <string>comment methods</string>
+           <string>commecnt values</string>
           </property>
          </widget>
         </item>

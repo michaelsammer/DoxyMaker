@@ -8,6 +8,7 @@
 #include <QFileInfo>
 #include <QFileDialog>
 
+#include "data/db.h"
 #include "mdi/mditextchild.h"
 #include "dlgtemplates.h"
 

@@ -4,6 +4,8 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow), dlgTemplates(Q_NULLPTR) {
     ui->setupUi(this);
+
+    db::connect();
 }
 
 MainWindow::~MainWindow() {

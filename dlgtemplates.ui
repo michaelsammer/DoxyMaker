@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>483</width>
-    <height>436</height>
+    <width>597</width>
+    <height>515</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,11 +17,23 @@
    <item>
     <widget class="QWidget" name="widget" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>3</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>3</number>
+      </property>
       <item>
        <widget class="QLabel" name="label">
         <property name="maximumSize">
          <size>
-          <width>80</width>
+          <width>70</width>
           <height>16777215</height>
          </size>
         </property>
@@ -31,32 +43,120 @@
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox"/>
+       <widget class="QComboBox" name="cboTemplate"/>
       </item>
       <item>
-       <widget class="QPushButton" name="cmdAdd">
+       <widget class="QWidget" name="widget_3" native="true">
         <property name="maximumSize">
          <size>
-          <width>80</width>
+          <width>60</width>
           <height>16777215</height>
          </size>
         </property>
-        <property name="text">
-         <string>Add</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="cmdRemove">
-        <property name="maximumSize">
-         <size>
-          <width>80</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Remove</string>
-        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <property name="spacing">
+          <number>3</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QToolButton" name="cmdEdit">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string>Edit</string>
+           </property>
+           <property name="icon">
+            <iconset resource="res.qrc">
+             <normaloff>:/icons/edit.png</normaloff>:/icons/edit.png</iconset>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonIconOnly</enum>
+           </property>
+           <property name="arrowType">
+            <enum>Qt::NoArrow</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="cmdAdd">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string>Add</string>
+           </property>
+           <property name="icon">
+            <iconset resource="res.qrc">
+             <normaloff>:/icons/plus.png</normaloff>:/icons/plus.png</iconset>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonIconOnly</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="cmdDelete">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string>Delete</string>
+           </property>
+           <property name="icon">
+            <iconset resource="res.qrc">
+             <normaloff>:/icons/minus.png</normaloff>:/icons/minus.png</iconset>
+           </property>
+           <property name="popupMode">
+            <enum>QToolButton::DelayedPopup</enum>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonIconOnly</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
@@ -142,6 +242,16 @@
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="cmdSave">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Save</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="cmdClose">
         <property name="text">
          <string>Close</string>
@@ -153,7 +263,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>cmdClose</sender>
@@ -162,8 +274,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>410</x>
-     <y>407</y>
+     <x>578</x>
+     <y>496</y>
     </hint>
     <hint type="destinationlabel">
      <x>481</x>
@@ -171,5 +283,92 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>cmdSave</sender>
+   <signal>clicked()</signal>
+   <receiver>DlgTemplates</receiver>
+   <slot>saveTemplate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>497</x>
+     <y>496</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>480</x>
+     <y>379</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cmdEdit</sender>
+   <signal>clicked()</signal>
+   <receiver>DlgTemplates</receiver>
+   <slot>editTemplate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>462</x>
+     <y>33</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>596</x>
+     <y>18</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cmdAdd</sender>
+   <signal>clicked()</signal>
+   <receiver>DlgTemplates</receiver>
+   <slot>addTemplate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>515</x>
+     <y>37</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>593</x>
+     <y>12</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cmdDelete</sender>
+   <signal>clicked()</signal>
+   <receiver>DlgTemplates</receiver>
+   <slot>removeTemplate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>565</x>
+     <y>42</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>599</x>
+     <y>47</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cboTemplate</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>DlgTemplates</receiver>
+   <slot>templateChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>237</x>
+     <y>36</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>321</x>
+     <y>4</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>addTemplate()</slot>
+  <slot>removeTemplate()</slot>
+  <slot>saveTemplate()</slot>
+  <slot>editTemplate()</slot>
+  <slot>templateChanged(int)</slot>
+ </slots>
 </ui>

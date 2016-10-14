@@ -3,5 +3,8 @@
         <file>icons/open.png</file>
         <file>icons/save.png</file>
         <file>icons/settings.png</file>
+        <file>icons/edit.png</file>
+        <file>icons/minus.png</file>
+        <file>icons/plus.png</file>
     </qresource>
 </RCC>
