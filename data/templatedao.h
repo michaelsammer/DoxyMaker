@@ -27,12 +27,13 @@ public:
     TemplateDTO *findTemplateById(int id);
     QList<TemplateDTO *> findAllTemplates();
     void saveTemplate(TemplateDTO &dto);
-    void removeTemplate(TemplateDTO dto);
+    void removeTemplate(int tmplId);
 
     TemplateContentDTO *findContentById(int templId, TemplateType type);
     QList<TemplateContentDTO *> findContentsForTemplate(int templId);
     void saveTemplateContent(TemplateContentDTO &dto);
     void removeTemplateContent(TemplateContentDTO dto);
+    void removeContentForTemplate(int tmplId);
 
 };
 

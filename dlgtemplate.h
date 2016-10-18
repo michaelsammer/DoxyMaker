@@ -2,8 +2,11 @@
 #define DLGTEMPLATE_H
 
 #include <QDialog>
+#include <QString>
+#include <QMessageBox>
 
 #include "data/templatedto.h"
+#include "tools/templatemngr.h"
 
 namespace Ui {
 class DlgTemplate;
@@ -18,6 +21,9 @@ public:
 
     void setTemplate(TemplateDTO *templ = 0);
 
+signals:
+    void templateChanged();
+
 public slots:
     void save();
 
@@ -25,6 +31,7 @@ private:
     Ui::DlgTemplate *ui;
     TemplateDTO *templ;
 
+    TemplateMngr *mngr;
 };
 
 #endif // DLGTEMPLATE_H

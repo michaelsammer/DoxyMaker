@@ -22,8 +22,8 @@ public:
     TemplateData loadTemplateContent(int templId);
 
     void addTemplate(QString name, QString desc);
-    void saveTemplate(TemplateDTO dto);
-    void deleteTemplate(TemplateDTO dto);
+    void saveTemplate(TemplateDTO *dto);
+    void deleteTemplate(int tmplId);
 
     void saveContent(TemplateData content);
 

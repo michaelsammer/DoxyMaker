@@ -306,8 +306,8 @@
    <slot>editTemplate()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>462</x>
-     <y>33</y>
+     <x>545</x>
+     <y>30</y>
     </hint>
     <hint type="destinationlabel">
      <x>596</x>
@@ -322,8 +322,8 @@
    <slot>addTemplate()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>515</x>
-     <y>37</y>
+     <x>566</x>
+     <y>30</y>
     </hint>
     <hint type="destinationlabel">
      <x>593</x>
@@ -338,8 +338,8 @@
    <slot>removeTemplate()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>565</x>
-     <y>42</y>
+     <x>587</x>
+     <y>30</y>
     </hint>
     <hint type="destinationlabel">
      <x>599</x>
@@ -351,15 +351,95 @@
    <sender>cboTemplate</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>DlgTemplates</receiver>
-   <slot>templateChanged(int)</slot>
+   <slot>templateIdxChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>237</x>
-     <y>36</y>
+     <x>322</x>
+     <y>31</y>
     </hint>
     <hint type="destinationlabel">
      <x>321</x>
      <y>4</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>txtHeader</sender>
+   <signal>textChanged()</signal>
+   <receiver>DlgTemplates</receiver>
+   <slot>contentChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>532</x>
+     <y>213</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>597</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>txtEnum</sender>
+   <signal>textChanged()</signal>
+   <receiver>DlgTemplates</receiver>
+   <slot>contentChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>501</x>
+     <y>201</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>596</x>
+     <y>200</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>txtStruct</sender>
+   <signal>textChanged()</signal>
+   <receiver>DlgTemplates</receiver>
+   <slot>contentChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>304</x>
+     <y>248</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>298</x>
+     <y>257</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>txtClass</sender>
+   <signal>textChanged()</signal>
+   <receiver>DlgTemplates</receiver>
+   <slot>contentChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>304</x>
+     <y>248</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>298</x>
+     <y>257</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>txtMethod</sender>
+   <signal>textChanged()</signal>
+   <receiver>DlgTemplates</receiver>
+   <slot>contentChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>304</x>
+     <y>248</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>298</x>
+     <y>257</y>
     </hint>
    </hints>
   </connection>
@@ -369,6 +449,7 @@
   <slot>removeTemplate()</slot>
   <slot>saveTemplate()</slot>
   <slot>editTemplate()</slot>
-  <slot>templateChanged(int)</slot>
+  <slot>templateIdxChanged(int)</slot>
+  <slot>contentChanged()</slot>
  </slots>
 </ui>

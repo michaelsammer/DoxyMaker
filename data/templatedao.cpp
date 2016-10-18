@@ -33,14 +33,17 @@ QList<TemplateDTO *> TemplateDAO::findAllTemplates() {
     return ret;
 }
 
-void TemplateDAO::saveTemplate(TemplateDTO &dto)
-{
-
+void TemplateDAO::saveTemplate(TemplateDTO &dto) {
+    // TODO implement save template
 }
 
-void TemplateDAO::removeTemplate(TemplateDTO dto)
-{
+void TemplateDAO::removeTemplate(int tmplId) {
+    QSqlQuery del;
 
+    del.prepare("DELETE FROM template WHERE id = :id");
+    del.bindValue(":id", tmplId);
+
+    del.exec();
 }
 
 TemplateContentDTO *TemplateDAO::findContentById(int templId, TemplateType type) {
@@ -76,10 +79,14 @@ QList<TemplateContentDTO *> TemplateDAO::findContentsForTemplate(int templId) {
 
 void TemplateDAO::saveTemplateContent(TemplateContentDTO &dto)
 {
-
+    // TODO implement save template content
 }
 
 void TemplateDAO::removeTemplateContent(TemplateContentDTO dto)
 {
+    // TODO implement remove template content
+}
 
+void TemplateDAO::removeContentForTemplate(int tmplId) {
+    // TODO implement content for template
 }

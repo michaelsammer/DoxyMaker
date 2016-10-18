@@ -27,22 +27,31 @@ TemplateData TemplateMngr::loadTemplateContent(int templId) {
     return data;
 }
 
-void TemplateMngr::addTemplate(QString name, QString desc)
-{
-
+void TemplateMngr::addTemplate(QString name, QString desc) {
+    TemplateDTO *templ = new TemplateDTO(name, desc);
+    dao->saveTemplate(templ);
 }
 
-void TemplateMngr::saveTemplate(TemplateDTO dto)
-{
-
+void TemplateMngr::saveTemplate(TemplateDTO *dto) {
+    dao->saveTemplate(dto);
 }
 
-void TemplateMngr::deleteTemplate(TemplateDTO dto)
-{
+void TemplateMngr::deleteTemplate(int tmplId) {
 
+    dao->removeContentForTemplate(tmplId);
+
+    dao->removeTemplate(tmplId);
 }
 
-void TemplateMngr::saveContent(TemplateData content)
-{
+void TemplateMngr::saveContent(TemplateData content) {
+
+    if (content.modified) {
+        dao->saveTemplateContent(content.content.value(TEMPLATE_TYPE_HEADER));
+        dao->saveTemplateContent(content.content.value(TEMPLATE_TYPE_ENUM));
+        dao->saveTemplateContent(content.content.value(TEMPLATE_TYPE_STRUCT));
+        dao->saveTemplateContent(content.content.value(TEMPLATE_TYPE_CLASS));
+        dao->saveTemplateContent(content.content.value(TEMPLATE_TYPE_METHOD));
+        dao->saveTemplateContent(content.content.value(TEMPLATE_TYPE_VALUE));
+    }
 
 }

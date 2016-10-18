@@ -23,7 +23,11 @@ public slots:
     void removeTemplate();
     void saveTemplate();
     void editTemplate();
-    void templateChanged(int idx);
+    void templateIdxChanged(int idx);
+
+    void contentChanged();
+
+    void templatesModified();
 
 private:
     Ui::DlgTemplates *ui;
