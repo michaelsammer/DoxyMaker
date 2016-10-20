@@ -1,6 +1,7 @@
 #include "templatedto.h"
 
 TemplateDTO::TemplateDTO(QString name, QString desc) {
+    this->id = -1;
     this->name = name;
     this->desc = desc;
 }

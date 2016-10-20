@@ -28,11 +28,11 @@ TemplateData TemplateMngr::loadTemplateContent(int templId) {
 }
 
 void TemplateMngr::addTemplate(QString name, QString desc) {
-    TemplateDTO *templ = new TemplateDTO(name, desc);
+    TemplateDTO templ(name, desc);
     dao->saveTemplate(templ);
 }
 
-void TemplateMngr::saveTemplate(TemplateDTO *dto) {
+void TemplateMngr::saveTemplate(TemplateDTO &dto) {
     dao->saveTemplate(dto);
 }
 
@@ -46,12 +46,18 @@ void TemplateMngr::deleteTemplate(int tmplId) {
 void TemplateMngr::saveContent(TemplateData content) {
 
     if (content.modified) {
-        dao->saveTemplateContent(content.content.value(TEMPLATE_TYPE_HEADER));
-        dao->saveTemplateContent(content.content.value(TEMPLATE_TYPE_ENUM));
-        dao->saveTemplateContent(content.content.value(TEMPLATE_TYPE_STRUCT));
-        dao->saveTemplateContent(content.content.value(TEMPLATE_TYPE_CLASS));
-        dao->saveTemplateContent(content.content.value(TEMPLATE_TYPE_METHOD));
-        dao->saveTemplateContent(content.content.value(TEMPLATE_TYPE_VALUE));
+        if (content.content.contains(TEMPLATE_TYPE_HEADER))
+            dao->saveTemplateContent(*content.content.value(TEMPLATE_TYPE_HEADER));
+        if (content.content.contains(TEMPLATE_TYPE_ENUM))
+            dao->saveTemplateContent(*content.content.value(TEMPLATE_TYPE_ENUM));
+        if (content.content.contains(TEMPLATE_TYPE_STRUCT))
+            dao->saveTemplateContent(*content.content.value(TEMPLATE_TYPE_STRUCT));
+        if (content.content.contains(TEMPLATE_TYPE_CLASS))
+            dao->saveTemplateContent(*content.content.value(TEMPLATE_TYPE_CLASS));
+        if (content.content.contains(TEMPLATE_TYPE_METHOD))
+            dao->saveTemplateContent(*content.content.value(TEMPLATE_TYPE_METHOD));
+        if (content.content.contains(TEMPLATE_TYPE_VALUE))
+            dao->saveTemplateContent(*content.content.value(TEMPLATE_TYPE_VALUE));
     }
 
 }

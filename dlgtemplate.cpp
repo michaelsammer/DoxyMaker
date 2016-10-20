@@ -36,9 +36,11 @@ void DlgTemplate::save() {
         else {
             templ->setName(name);
             templ->setDesc(ui->txtDesc->document()->toPlainText());
-            mngr->saveTemplate(templ);
+            mngr->saveTemplate(*templ);
         }
 
         emit templateChanged();
+
+        close();
     }
 }

@@ -2,6 +2,8 @@
 #define DLGTEMPLATES_H
 
 #include <QDialog>
+#include <QTextEdit>
+#include <QMessageBox>
 
 #include "dlgtemplate.h"
 #include "tools/templatemngr.h"
@@ -37,8 +39,11 @@ private:
 
     QList<TemplateDTO *> templates;
     TemplateData data;
+    int curTmplId;
 
     void refreshTemplates();
+    void writeContent(TemplateType type, QTextEdit *txt);
+    bool checkChangedContent(TemplateType type, QTextEdit *txt);
 
 };
 

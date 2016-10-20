@@ -24,9 +24,11 @@ void DlgTemplates::addTemplate() {
 }
 
 void DlgTemplates::removeTemplate() {
-    mngr->deleteTemplate(ui->cboTemplate->currentData().toInt());
-
-    refreshTemplates();
+    QString msg = QString("Do you realy want to remove template %1?").arg(ui->cboTemplate->currentText());
+    if (QMessageBox::question(this, "Remove template", msg) == QMessageBox::Yes) {
+        mngr->deleteTemplate(ui->cboTemplate->currentData().toInt());
+        refreshTemplates();
+    }
 }
 
 void DlgTemplates::saveTemplate() {
@@ -49,35 +51,26 @@ void DlgTemplates::editTemplate() {
 }
 
 void DlgTemplates::templateIdxChanged(int idx) {
-    int id = ui->cboTemplate->currentData().toInt();
+    curTmplId = ui->cboTemplate->currentData().toInt();
 
-    data = mngr->loadTemplateContent(id);
-    ui->txtHeader->setText(data.content.value(TEMPLATE_TYPE_HEADER)->getContent());
+    data = mngr->loadTemplateContent(curTmplId);
+
+    writeContent(TEMPLATE_TYPE_HEADER, ui->txtHeader);
+    writeContent(TEMPLATE_TYPE_ENUM, ui->txtEnum);
+    writeContent(TEMPLATE_TYPE_STRUCT, ui->txtStruct);
+    writeContent(TEMPLATE_TYPE_CLASS, ui->txtClass);
+    writeContent(TEMPLATE_TYPE_METHOD, ui->txtMethod);
+
 }
 
 void DlgTemplates::contentChanged() {
     bool modified = false;
 
-    if (ui->txtHeader->document()->isModified()) {
-        data.content.value(TEMPLATE_TYPE_HEADER)->setContent(ui->txtHeader->document()->toPlainText());
-        modified = true;
-    }
-    if (ui->txtEnum->document()->isModified()) {
-        data.content.value(TEMPLATE_TYPE_ENUM)->setContent(ui->txtEnum->document()->toPlainText());
-        modified = true;
-    }
-    if (ui->txtStruct->document()->isModified()) {
-        data.content.value(TEMPLATE_TYPE_STRUCT)->setContent(ui->txtStruct->document()->toPlainText());
-        modified = true;
-    }
-    if (ui->txtClass->document()->isModified()) {
-        data.content.value(TEMPLATE_TYPE_CLASS)->setContent(ui->txtClass->document()->toPlainText());
-        modified = true;
-    }
-    if (ui->txtMethod->document()->isModified()) {
-        data.content.value(TEMPLATE_TYPE_METHOD)->setContent(ui->txtMethod->document()->toPlainText());
-        modified = true;
-    }
+    modified = modified || checkChangedContent(TEMPLATE_TYPE_HEADER, ui->txtHeader);
+    modified = modified || checkChangedContent(TEMPLATE_TYPE_ENUM, ui->txtEnum);
+    modified = modified || checkChangedContent(TEMPLATE_TYPE_STRUCT, ui->txtStruct);
+    modified = modified || checkChangedContent(TEMPLATE_TYPE_CLASS, ui->txtClass);
+    modified = modified || checkChangedContent(TEMPLATE_TYPE_METHOD, ui->txtMethod);
 
     ui->cmdSave->setEnabled(modified);
 
@@ -97,4 +90,22 @@ void DlgTemplates::refreshTemplates() {
     foreach(TemplateDTO *dto, templates)
         ui->cboTemplate->addItem(dto->getName(), dto->getId());
 
+}
+
+void DlgTemplates::writeContent(TemplateType type, QTextEdit *txt) {
+    if (data.content.contains(type))
+        txt->setText(data.content.value(type)->getContent());
+    else
+        txt->setText("");
+}
+
+bool DlgTemplates::checkChangedContent(TemplateType type, QTextEdit *txt) {
+    if (txt->document()->isModified()) {
+        if (!data.content.contains(type))
+            data.content.insert(type, new TemplateContentDTO(curTmplId, (int)type, txt->document()->toPlainText()));
+        else
+            data.content.value(type)->setContent(txt->document()->toPlainText());
+        return true;
+    }
+    return false;
 }
