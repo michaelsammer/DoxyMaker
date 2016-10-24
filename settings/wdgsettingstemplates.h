@@ -1,24 +1,23 @@
-#ifndef DLGTEMPLATES_H
-#define DLGTEMPLATES_H
+#ifndef WDGSETTINGSTEMPLATES_H
+#define WDGSETTINGSTEMPLATES_H
 
-#include <QDialog>
+#include <QWidget>
 #include <QTextEdit>
 #include <QMessageBox>
 
-#include "dlgtemplate.h"
+#include "settings/dlgtemplate.h"
 #include "tools/templatemngr.h"
 
 namespace Ui {
-class DlgTemplates;
+class WdgSettingsTemplates;
 }
 
-class DlgTemplates : public QDialog
-{
+class WdgSettingsTemplates : public QWidget {
     Q_OBJECT
 
 public:
-    explicit DlgTemplates(QWidget *parent = 0);
-    ~DlgTemplates();
+    explicit WdgSettingsTemplates(QWidget *parent = 0);
+    ~WdgSettingsTemplates();
 
 public slots:
     void addTemplate();
@@ -32,7 +31,7 @@ public slots:
     void templatesModified();
 
 private:
-    Ui::DlgTemplates *ui;
+    Ui::WdgSettingsTemplates *ui;
     DlgTemplate *dlgTemplate;
 
     TemplateMngr *mngr;
@@ -47,4 +46,4 @@ private:
 
 };
 
-#endif // DLGTEMPLATES_H
+#endif // WDGSETTINGSTEMPLATES_H

@@ -17,29 +17,44 @@ SOURCES += main.cpp\
     mdi/mditextchild.cpp \
     tools/analyser.cpp \
     data/statement.cpp \
-    dlgtemplates.cpp \
     data/db.cpp \
     data/templatedao.cpp \
     data/templatedto.cpp \
     data/templatecontentdto.cpp \
-    dlgtemplate.cpp \
-    tools/templatemngr.cpp
+    tools/templatemngr.cpp \
+    data/valuesdto.cpp \
+    data/valuesdao.cpp \
+    tools/valuesmngr.cpp \
+    dlgsettings.cpp \
+    settings/wdgsettingglobal.cpp \
+    settings/wdgsettingstemplates.cpp \
+    settings/wdgsettingsvalues.cpp \
+    settings/dlgtemplate.cpp
 
 HEADERS  += mainwindow.h \
     mdi/mditextchild.h \
     tools/analyser.h \
     data/statement.h \
-    dlgtemplates.h \
     data/db.h \
     data/templatedao.h \
     data/templatedto.h \
     data/templatecontentdto.h \
-    dlgtemplate.h \
-    tools/templatemngr.h
+    tools/templatemngr.h \
+    data/valuesdto.h \
+    data/valuesdao.h \
+    tools/valuesmngr.h \
+    dlgsettings.h \
+    settings/wdgsettingglobal.h \
+    settings/wdgsettingstemplates.h \
+    settings/wdgsettingsvalues.h \
+    settings/dlgtemplate.h
 
 FORMS    += mainwindow.ui \
-    dlgtemplates.ui \
-    dlgtemplate.ui
+    dlgsettings.ui \
+    settings/wdgsettingglobal.ui \
+    settings/wdgsettingstemplates.ui \
+    settings/wdgsettingsvalues.ui \
+    settings/dlgtemplate.ui
 
 RESOURCES += \
     res.qrc

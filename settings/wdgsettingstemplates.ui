@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DlgTemplates</class>
- <widget class="QDialog" name="DlgTemplates">
+ <class>WdgSettingsTemplates</class>
+ <widget class="QWidget" name="WdgSettingsTemplates">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>597</width>
-    <height>515</height>
+    <width>700</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -30,7 +30,7 @@
        <number>3</number>
       </property>
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="label_2">
         <property name="maximumSize">
          <size>
           <width>70</width>
@@ -90,7 +90,7 @@
             <string>Edit</string>
            </property>
            <property name="icon">
-            <iconset resource="res.qrc">
+            <iconset resource="../res.qrc">
              <normaloff>:/icons/edit.png</normaloff>:/icons/edit.png</iconset>
            </property>
            <property name="toolButtonStyle">
@@ -122,7 +122,7 @@
             <string>Add</string>
            </property>
            <property name="icon">
-            <iconset resource="res.qrc">
+            <iconset resource="../res.qrc">
              <normaloff>:/icons/plus.png</normaloff>:/icons/plus.png</iconset>
            </property>
            <property name="toolButtonStyle">
@@ -145,7 +145,7 @@
             <string>Delete</string>
            </property>
            <property name="icon">
-            <iconset resource="res.qrc">
+            <iconset resource="../res.qrc">
              <normaloff>:/icons/minus.png</normaloff>:/icons/minus.png</iconset>
            </property>
            <property name="popupMode">
@@ -165,7 +165,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="tabPosition">
-      <enum>QTabWidget::West</enum>
+      <enum>QTabWidget::North</enum>
      </property>
      <property name="tabShape">
       <enum>QTabWidget::Triangular</enum>
@@ -251,195 +251,172 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QPushButton" name="cmdClose">
-        <property name="text">
-         <string>Close</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="res.qrc"/>
+  <include location="../res.qrc"/>
  </resources>
  <connections>
   <connection>
-   <sender>cmdClose</sender>
+   <sender>cmdAdd</sender>
    <signal>clicked()</signal>
-   <receiver>DlgTemplates</receiver>
-   <slot>close()</slot>
+   <receiver>WdgSettingsTemplates</receiver>
+   <slot>addTemplate()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>578</x>
-     <y>496</y>
+     <x>661</x>
+     <y>23</y>
     </hint>
     <hint type="destinationlabel">
-     <x>481</x>
-     <y>409</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>cmdSave</sender>
-   <signal>clicked()</signal>
-   <receiver>DlgTemplates</receiver>
-   <slot>saveTemplate()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>497</x>
-     <y>496</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>480</x>
-     <y>379</y>
+     <x>674</x>
+     <y>2</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>cmdEdit</sender>
    <signal>clicked()</signal>
-   <receiver>DlgTemplates</receiver>
+   <receiver>WdgSettingsTemplates</receiver>
    <slot>editTemplate()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>545</x>
-     <y>30</y>
+     <x>642</x>
+     <y>20</y>
     </hint>
     <hint type="destinationlabel">
-     <x>596</x>
-     <y>18</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>cmdAdd</sender>
-   <signal>clicked()</signal>
-   <receiver>DlgTemplates</receiver>
-   <slot>addTemplate()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>566</x>
-     <y>30</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>593</x>
-     <y>12</y>
+     <x>649</x>
+     <y>4</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>cmdDelete</sender>
    <signal>clicked()</signal>
-   <receiver>DlgTemplates</receiver>
+   <receiver>WdgSettingsTemplates</receiver>
    <slot>removeTemplate()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>587</x>
-     <y>30</y>
+     <x>681</x>
+     <y>19</y>
     </hint>
     <hint type="destinationlabel">
-     <x>599</x>
-     <y>47</y>
+     <x>699</x>
+     <y>22</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>cboTemplate</sender>
    <signal>currentIndexChanged(int)</signal>
-   <receiver>DlgTemplates</receiver>
+   <receiver>WdgSettingsTemplates</receiver>
    <slot>templateIdxChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>322</x>
-     <y>31</y>
+     <x>375</x>
+     <y>21</y>
     </hint>
     <hint type="destinationlabel">
-     <x>321</x>
-     <y>4</y>
+     <x>400</x>
+     <y>2</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cmdSave</sender>
+   <signal>clicked()</signal>
+   <receiver>WdgSettingsTemplates</receiver>
+   <slot>saveTemplate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>659</x>
+     <y>471</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>700</x>
+     <y>465</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>txtHeader</sender>
    <signal>textChanged()</signal>
-   <receiver>DlgTemplates</receiver>
+   <receiver>WdgSettingsTemplates</receiver>
    <slot>contentChanged()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>532</x>
-     <y>213</y>
+     <x>32</x>
+     <y>241</y>
     </hint>
     <hint type="destinationlabel">
-     <x>597</x>
-     <y>210</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>txtEnum</sender>
-   <signal>textChanged()</signal>
-   <receiver>DlgTemplates</receiver>
-   <slot>contentChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>501</x>
-     <y>201</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>596</x>
-     <y>200</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>txtStruct</sender>
-   <signal>textChanged()</signal>
-   <receiver>DlgTemplates</receiver>
-   <slot>contentChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>304</x>
-     <y>248</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>298</x>
-     <y>257</y>
+     <x>2</x>
+     <y>241</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>txtClass</sender>
    <signal>textChanged()</signal>
-   <receiver>DlgTemplates</receiver>
+   <receiver>WdgSettingsTemplates</receiver>
    <slot>contentChanged()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>304</x>
+     <x>348</x>
      <y>248</y>
     </hint>
     <hint type="destinationlabel">
-     <x>298</x>
-     <y>257</y>
+     <x>349</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>txtEnum</sender>
+   <signal>textChanged()</signal>
+   <receiver>WdgSettingsTemplates</receiver>
+   <slot>contentChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>348</x>
+     <y>248</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>249</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>txtMethod</sender>
    <signal>textChanged()</signal>
-   <receiver>DlgTemplates</receiver>
+   <receiver>WdgSettingsTemplates</receiver>
    <slot>contentChanged()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>304</x>
+     <x>348</x>
      <y>248</y>
     </hint>
     <hint type="destinationlabel">
-     <x>298</x>
-     <y>257</y>
+     <x>349</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>txtStruct</sender>
+   <signal>textChanged()</signal>
+   <receiver>WdgSettingsTemplates</receiver>
+   <slot>contentChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>348</x>
+     <y>248</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>249</y>
     </hint>
    </hints>
   </connection>
@@ -451,5 +428,6 @@
   <slot>editTemplate()</slot>
   <slot>templateIdxChanged(int)</slot>
   <slot>contentChanged()</slot>
+  <slot>templatesModified()</slot>
  </slots>
 </ui>

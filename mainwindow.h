@@ -5,12 +5,16 @@
 #include <QMdiSubWindow>
 #include <QString>
 #include <QStringList>
+#include <QList>
 #include <QFileInfo>
 #include <QFileDialog>
+#include <QTableWidgetItem>
 
+#include "dlgsettings.h"
 #include "data/db.h"
+#include "data/templatedto.h"
 #include "mdi/mditextchild.h"
-#include "dlgtemplates.h"
+#include "tools/templatemngr.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,17 +32,25 @@ public slots:
     void save();
     void comment();
     void settings();
+    void valuesChanged(QTableWidgetItem *item);
 
     MdiTextChild *createMdiChild();
 
+protected:
+    void closeEvent(QCloseEvent *);
+
 private:
     Ui::MainWindow *ui;
-    DlgTemplates *dlgTemplates;
+    DlgSettings *dlgSettings;
 
     MdiTextChild *activeMdiChild();
     QMdiSubWindow *findMdiChild(const QString &fileName);
 
+    TemplateMngr *tmplMngr;
+
+    void refreshTemplates();
     void updateDocList();
+
 };
 
 #endif // MAINWINDOW_H

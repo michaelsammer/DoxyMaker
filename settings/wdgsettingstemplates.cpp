@@ -1,8 +1,8 @@
-#include "dlgtemplates.h"
-#include "ui_dlgtemplates.h"
+#include "wdgsettingstemplates.h"
+#include "ui_wdgsettingstemplates.h"
 
-DlgTemplates::DlgTemplates(QWidget *parent) :
-    QDialog(parent), ui(new Ui::DlgTemplates) {
+WdgSettingsTemplates::WdgSettingsTemplates(QWidget *parent) :
+    QWidget(parent), ui(new Ui::WdgSettingsTemplates) {
     ui->setupUi(this);
 
     dlgTemplate = new DlgTemplate(this);
@@ -11,19 +11,18 @@ DlgTemplates::DlgTemplates(QWidget *parent) :
     // load templates
     mngr = new TemplateMngr();
     refreshTemplates();
-
 }
 
-DlgTemplates::~DlgTemplates() {
+WdgSettingsTemplates::~WdgSettingsTemplates() {
     delete ui;
 }
 
-void DlgTemplates::addTemplate() {
+void WdgSettingsTemplates::addTemplate() {
     dlgTemplate->setTemplate();
     dlgTemplate->show();
 }
 
-void DlgTemplates::removeTemplate() {
+void WdgSettingsTemplates::removeTemplate() {
     QString msg = QString("Do you realy want to remove template %1?").arg(ui->cboTemplate->currentText());
     if (QMessageBox::question(this, "Remove template", msg) == QMessageBox::Yes) {
         mngr->deleteTemplate(ui->cboTemplate->currentData().toInt());
@@ -31,7 +30,7 @@ void DlgTemplates::removeTemplate() {
     }
 }
 
-void DlgTemplates::saveTemplate() {
+void WdgSettingsTemplates::saveTemplate() {
     mngr->saveContent(data);
 
     // set back all document modified states
@@ -42,7 +41,7 @@ void DlgTemplates::saveTemplate() {
     ui->txtMethod->document()->setModified(false);
 }
 
-void DlgTemplates::editTemplate() {
+void WdgSettingsTemplates::editTemplate() {
     int id = ui->cboTemplate->currentData().toInt();
     TemplateDTO *templ = mngr->getTemplate(id);
 
@@ -50,7 +49,7 @@ void DlgTemplates::editTemplate() {
     dlgTemplate->show();
 }
 
-void DlgTemplates::templateIdxChanged(int idx) {
+void WdgSettingsTemplates::templateIdxChanged(int idx) {
     curTmplId = ui->cboTemplate->currentData().toInt();
 
     data = mngr->loadTemplateContent(curTmplId);
@@ -63,7 +62,7 @@ void DlgTemplates::templateIdxChanged(int idx) {
 
 }
 
-void DlgTemplates::contentChanged() {
+void WdgSettingsTemplates::contentChanged() {
     bool modified = false;
 
     modified = modified || checkChangedContent(TEMPLATE_TYPE_HEADER, ui->txtHeader);
@@ -79,11 +78,11 @@ void DlgTemplates::contentChanged() {
 
 }
 
-void DlgTemplates::templatesModified() {
+void WdgSettingsTemplates::templatesModified() {
     refreshTemplates();
 }
 
-void DlgTemplates::refreshTemplates() {
+void WdgSettingsTemplates::refreshTemplates() {
     templates = mngr->loadTemplates();
     ui->cboTemplate->clear();
 
@@ -92,14 +91,14 @@ void DlgTemplates::refreshTemplates() {
 
 }
 
-void DlgTemplates::writeContent(TemplateType type, QTextEdit *txt) {
+void WdgSettingsTemplates::writeContent(TemplateType type, QTextEdit *txt) {
     if (data.content.contains(type))
         txt->setText(data.content.value(type)->getContent());
     else
         txt->setText("");
 }
 
-bool DlgTemplates::checkChangedContent(TemplateType type, QTextEdit *txt) {
+bool WdgSettingsTemplates::checkChangedContent(TemplateType type, QTextEdit *txt) {
     if (txt->document()->isModified()) {
         if (!data.content.contains(type))
             data.content.insert(type, new TemplateContentDTO(curTmplId, (int)type, txt->document()->toPlainText()));

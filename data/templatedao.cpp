@@ -1,7 +1,7 @@
 #include "templatedao.h"
 
 TemplateDAO::TemplateDAO() {
-
+    // nop
 }
 
 TemplateDTO *TemplateDAO::findTemplateById(int id) {
