@@ -4,9 +4,9 @@ ValuesMngr::ValuesMngr() {
 
     dao = new ValuesDAO();
 
-    QList<ValuesDTO> vals = dao->findAll();
-    foreach(ValuesDTO val, vals)
-        values.insert(val.getName(), &val);
+    QList<ValuesDTO *> vals = dao->findAll();
+    foreach(ValuesDTO *val, vals)
+        values.insert(val->getName(), val);
 
 }
 
@@ -21,6 +21,19 @@ QList<ValuesDTO *> ValuesMngr::getValues() {
     return values.values();
 }
 
-void ValuesMngr::saveValues(QList<ValuesDTO> vals) {
-    dao->saveAll(vals);
+void ValuesMngr::saveValue(ValuesDTO *val) {
+    bool upd = (val->getId() > 0);
+
+    dao->save(*val);
+
+    if (upd)
+        values.remove(val->getName());
+    values.insert(val->getName(), val);
+
+}
+
+void ValuesMngr::deleteValue(ValuesDTO *dto) {
+    dao->remove(dto->getId());
+
+    values.remove(dto->getName());
 }

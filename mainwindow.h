@@ -32,7 +32,6 @@ public slots:
     void save();
     void comment();
     void settings();
-    void valuesChanged(QTableWidgetItem *item);
 
     MdiTextChild *createMdiChild();
 

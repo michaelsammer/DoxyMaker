@@ -14,7 +14,8 @@ public:
 
     QString getTextFor(QString key);
     QList<ValuesDTO *> getValues();
-    void saveValues(QList<ValuesDTO> vals);
+    void saveValue(ValuesDTO *val);
+    void deleteValue(ValuesDTO *dto);
 
 private:
     ValuesDAO *dao;

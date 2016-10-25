@@ -4,15 +4,15 @@ ValuesDAO::ValuesDAO() {
     // nop
 }
 
-QList<ValuesDTO> ValuesDAO::findAll() {
-    QList<ValuesDTO> ret;
+QList<ValuesDTO *> ValuesDAO::findAll() {
+    QList<ValuesDTO *> ret;
 
     QSqlQuery sql;
     sql.prepare("SELECT id, name, value, desc FROM filler");
     sql.exec();
 
     while (sql.next())
-        ret.append(ValuesDTO(sql.value(0).toInt(), sql.value(1).toString(), sql.value(2).toString(), sql.value(3).toString()));
+        ret.append(new ValuesDTO(sql.value(0).toInt(), sql.value(1).toString(), sql.value(2).toString(), sql.value(3).toString()));
 
     return ret;
 }
@@ -43,4 +43,12 @@ void ValuesDAO::saveAll(QList<ValuesDTO> values) {
         ValuesDTO dto = values.at(i);
         save(dto);
     }
+}
+
+void ValuesDAO::remove(int id) {
+    QSqlQuery del;
+    del.prepare("DELETE FROM filler WHERE id = :id");
+    del.bindValue(":id", id);
+
+    del.exec();
 }

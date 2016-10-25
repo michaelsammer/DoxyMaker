@@ -68,16 +68,6 @@ void MainWindow::settings() {
     dlgSettings->show();
 }
 
-void MainWindow::valuesChanged(QTableWidgetItem *item) {
-    int row = item->row() + 1;
-
-    if (row == ui->tblValues->rowCount()) {
-        if ((ui->tblValues->item(item->row(), 0) != NULL)
-         && (ui->tblValues->item(item->row(), 1) != NULL))
-            ui->tblValues->setRowCount(row + 1);
-    }
-}
-
 MdiTextChild *MainWindow::createMdiChild() {
     MdiTextChild *child = new MdiTextChild();
     ui->mdiArea->addSubWindow(child);
