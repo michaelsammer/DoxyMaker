@@ -13,12 +13,15 @@ QList<Statement *> Analyser::getDocElements() const {
 void Analyser::runAnalyse(QString content) {
     int curRow = 0;
     int curLevel = 0;
+    int docIdx = 0;
+
     QStringList rows = getRows(content);
 
     foreach (QString row, rows) {
         curRow++;
-        QList<Statement *> lst = getStatements(row, curRow, curLevel);
+        QList<Statement *> lst = getStatements(row, docIdx, curRow, curLevel);
         docElements.append(lst);
+        docIdx += row.size() + 1;
     }
 }
 
@@ -33,7 +36,7 @@ QStringList Analyser::getRows(QString input) {
     return retList;
 }
 
-QList<Statement *> Analyser::getStatements(QString row, int rowCnt, int &level) {
+QList<Statement *> Analyser::getStatements(QString row, int docIdx, int rowCnt, int &level) {
     QList<Statement *> retList;
 
     QStringList elems = row.split(" ");
@@ -51,7 +54,7 @@ QList<Statement *> Analyser::getStatements(QString row, int rowCnt, int &level) 
         if (elem == "enum") {
             QString name = elems.at(++i);
             if (isStatementValid(name)) {
-                stmt = new Statement(rowCnt, ENUM, name, level);
+                stmt = new Statement(rowCnt, docIdx, ENUM, name, level);
                 retList.append(stmt);
             }
         }
@@ -59,7 +62,7 @@ QList<Statement *> Analyser::getStatements(QString row, int rowCnt, int &level) 
         if (elem == "struct") {
             QString name = elems.at(++i);
             if (isStatementValid(name)) {
-                stmt = new Statement(rowCnt, STRUCT, name, level);
+                stmt = new Statement(rowCnt, docIdx, STRUCT, name, level);
                 retList.append(stmt);
             }
         }
@@ -67,7 +70,7 @@ QList<Statement *> Analyser::getStatements(QString row, int rowCnt, int &level) 
         if (elem == "class") {
             QString name = elems.at(++i);
             if (isStatementValid(name)) {
-                stmt = new Statement(rowCnt, CLASS, name, level);
+                stmt = new Statement(rowCnt, docIdx, CLASS, name, level);
                 retList.append(stmt);
             }
         }

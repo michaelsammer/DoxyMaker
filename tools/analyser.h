@@ -25,7 +25,7 @@ private:
 
     void runAnalyse(QString content);
     QStringList getRows(QString input);
-    QList<Statement *> getStatements(QString row, int rowCnt, int &level);
+    QList<Statement *> getStatements(QString row, int docIdx, int rowCnt, int &level);
     bool isStatementValid(QString name);
 };
 

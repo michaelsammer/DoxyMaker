@@ -76,18 +76,17 @@ bool MdiTextChild::saveFile(const QString &fileName) {
 }
 
 void MdiTextChild::writeHeader(QString header) {
-    QColor cl = textColor();
-    setTextColor(Qt::darkGreen);
-    QString font = fontFamily();
-    qDebug() << font;
-    setFontFamily("Courier");
 
-    QTextCursor cursor = textCursor();
-    cursor.setPosition(0);
-    cursor.insertText(header);
+}
 
-    setTextColor(cl);
-    setFontFamily(font);
+void MdiTextChild::writeClass(ValuesMngr *valMngr, QString content) {
+    valMngr->fillPlaceholders(content);
+
+    foreach(Statement *stmt, statements) {
+        if (stmt->getType() == CLASS) {
+            writeTextAt(content, stmt->getDocIdx());
+        }
+    }
 }
 
 QString MdiTextChild::userFriendlyCurrentFile() {
@@ -107,6 +106,21 @@ void MdiTextChild::closeEvent(QCloseEvent *event) {
 
 void MdiTextChild::documentWasModified() {
     setWindowModified(document()->isModified());
+}
+
+void MdiTextChild::writeTextAt(QString text, int idx) {
+    QColor cl = textColor();
+    setTextColor(Qt::darkGreen);
+    QString font = fontFamily();
+//    qDebug() << font;
+    setFontFamily("Courier");
+
+    QTextCursor cursor = textCursor();
+    cursor.setPosition(idx);
+    cursor.insertText(text);
+
+    setTextColor(cl);
+    setFontFamily(font);
 }
 
 bool MdiTextChild::maybeSave() {

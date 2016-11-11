@@ -53,12 +53,21 @@ void MainWindow::save() {
 }
 
 void MainWindow::comment() {
-//    activeMdiChild()->writeHeader("This is a test for a commecnt.\nNow a line break should be done.");
-    QString name = qgetenv("USER");
-    if (name.isEmpty())
-        name = qgetenv("USERNAME");
+    TemplateData data = tmplMngr->loadTemplateContent(ui->cboTemplate->currentData().toInt());
+    ValuesMngr *vm = new ValuesMngr();
 
-    qDebug() << QString("Username: %1").arg(name);
+//    activeMdiChild()->writeHeader("This is a test for a commecnt.\nNow a line break should be done.");
+
+    if (ui->chkClasses->isChecked())
+        activeMdiChild()->writeClass(vm, data.content.value(TEMPLATE_TYPE_CLASS)->getContent());
+
+
+
+//    QString name = qgetenv("USER");
+//    if (name.isEmpty())
+//        name = qgetenv("USERNAME");
+
+//    qDebug() << QString("Username: %1").arg(name);
 }
 
 void MainWindow::settings() {

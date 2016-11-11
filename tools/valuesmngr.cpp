@@ -37,3 +37,7 @@ void ValuesMngr::deleteValue(ValuesDTO *dto) {
 
     values.remove(dto->getName());
 }
+
+void ValuesMngr::fillPlaceholders(QString &content) {
+    // TODO fill placeholders
+}

@@ -17,6 +17,8 @@ public:
     void saveValue(ValuesDTO *val);
     void deleteValue(ValuesDTO *dto);
 
+    void fillPlaceholders(QString &content);
+
 private:
     ValuesDAO *dao;
     QMap<QString, ValuesDTO *> values;
